@@ -462,6 +462,7 @@ button.de.DOWN.txt=DOWN
 button.de.toggleHidden.txt=Toggle Hidden
 
 //Item Config Buttons
+button.de.ArmorInvisible.name=Invisible
 button.de.ArmorNVActive.name=Night Vision
 button.de.ArmorNVLock.name=Lock Night Vision
 button.de.ArmorFlightLock.name=Lock Flight

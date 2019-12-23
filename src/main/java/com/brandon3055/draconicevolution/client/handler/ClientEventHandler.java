@@ -13,6 +13,7 @@ import com.brandon3055.draconicevolution.common.items.weapons.DraconicBow;
 import com.brandon3055.draconicevolution.common.items.weapons.WyvernBow;
 import com.brandon3055.draconicevolution.common.network.MountUpdatePacket;
 import com.brandon3055.draconicevolution.common.utills.LogHelper;
+import com.brandon3055.draconicevolution.common.utills.IConfigurableItem;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -24,6 +25,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -166,7 +168,16 @@ public class ClientEventHandler {
         if (event.stack != null && (event.stack.getItem() instanceof DraconicArmor || event.stack.getItem() instanceof WyvernArmor)) {
             ItemArmor itemarmor = (ItemArmor) event.stack.getItem();
             ModelBiped modelbiped = itemarmor.getArmorModel(event.entityPlayer, event.stack, event.slot);
-            event.renderer.setRenderPassModel(modelbiped);
+            
+            boolean invis = IConfigurableItem.ProfileHelper.getBoolean(event.stack, "ArmorInvisible", false);
+            if (!invis){
+                ChatComponentText debug = new ChatComponentText(invis + "  " + itemarmor.getUnlocalizedName());
+                event.entityPlayer.addChatMessage(debug);
+                event.renderer.setRenderPassModel(modelbiped);
+            }
+            
+            // ChatComponentText debug = new ChatComponentText(itemarmor.getUnlocalizedName());
+            // event.entityPlayer.addChatMessage(debug);
             modelbiped.onGround = event.renderer.modelBipedMain.onGround;
             modelbiped.isRiding = event.renderer.modelBipedMain.isRiding;
             modelbiped.isChild = event.renderer.modelBipedMain.isChild;

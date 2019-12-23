@@ -292,6 +292,7 @@ public class DraconicArmor extends ItemArmor implements ISpecialArmor, IConfigur
         if (armorType == 0) {
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorNVActive").readFromItem(stack, false));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorNVLock").readFromItem(stack, true));
+            list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorInvisible").readFromItem(stack, false));
             if (Loader.isModLoaded("Thaumcraft"))
                 list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "GogglesOfRevealing").readFromItem(stack, true));
         } else if (armorType == 1) {
@@ -300,13 +301,16 @@ public class DraconicArmor extends ItemArmor implements ISpecialArmor, IConfigur
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "EffectiveOnSprint").readFromItem(stack, false));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorFlightLock").readFromItem(stack, false));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorInertiaCancellation").readFromItem(stack, false));
+            list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorInvisible").readFromItem(stack, false));
         } else if (armorType == 2) {
             list.add(new ItemConfigField(References.FLOAT_ID, slot, "ArmorSpeedMult").setMinMaxAndIncromente(0f, 8f, 0.1f).readFromItem(stack, 0F).setModifier("PLUSPERCENT"));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorSprintOnly").readFromItem(stack, false));
+            list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorInvisible").readFromItem(stack, false));
         } else if (armorType == 3) {
             list.add(new ItemConfigField(References.FLOAT_ID, slot, "ArmorJumpMult").setMinMaxAndIncromente(0f, 15f, 0.1f).readFromItem(stack, 0f).setModifier("PLUSPERCENT"));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorSprintOnly").readFromItem(stack, false));
             list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorHillStep").readFromItem(stack, true));
+            list.add(new ItemConfigField(References.BOOLEAN_ID, slot, "ArmorInvisible").readFromItem(stack, false));
         }
         return list;
     }
