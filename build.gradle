@@ -22,10 +22,14 @@ repositories {
         name 'CB Maven FS'
         url "http://chickenbones.net/maven/"
     }
-    ivy {
-           name = 'ComputerCraft'
-           artifactPattern  "http://addons-origin.forgecdn.com/files/2269/339/[module][revision](.[ext])"
+    maven {
+        name = "OpenComputers"
+        url = "http://maven.cil.li/"
     }
+    // ivy {
+    //        name = 'ComputerCraft'
+    //        artifactPattern  "http://addons-origin.forgecdn.com/files/2269/339/[module][revision](.[ext])"
+    // }
 }
 
 apply plugin: 'forge'
@@ -55,7 +59,8 @@ dependencies {
     compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
     compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
     compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
-    compile "ComputerCraft:ComputerCraft:1.75"
+    compile 'li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api'
+    //compile "ComputerCraft:ComputerCraft:1.75:dev"
     if (file('../BrandonsCore/').exists()) compile project('../BrandonsCore')
 }
 
