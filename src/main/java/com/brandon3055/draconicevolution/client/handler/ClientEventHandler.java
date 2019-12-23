@@ -119,9 +119,9 @@ public class ClientEventHandler {
         //endregion
 
         //region Armor move speed FOV effect cancellation
-        CustomArmorHandler.ArmorSummery summery = new CustomArmorHandler.ArmorSummery().getSummery(event.entity);
+        CustomArmorHandler.ArmorSummary summary = new CustomArmorHandler.ArmorSummary().getSummary(event.entity);
 
-        if (summery != null && summery.speedModifier > 0) {
+        if (summary != null && summary.speedModifier > 0) {
             IAttributeInstance iattributeinstance = event.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
             float f = (float) ((iattributeinstance.getAttributeValue() / (double) event.entity.capabilities.getWalkSpeed() + 1.0D) / 2.0D);
             event.newfov /= f;

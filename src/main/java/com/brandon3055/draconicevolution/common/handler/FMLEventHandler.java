@@ -40,8 +40,8 @@ public class FMLEventHandler {
     @SubscribeEvent
     public void playerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.player.onGround) {
-            CustomArmorHandler.ArmorSummery summery = new CustomArmorHandler.ArmorSummery().getSummery(event.player);
-            if (summery != null && summery.flight[0]) {
+            CustomArmorHandler.ArmorSummary summary = new CustomArmorHandler.ArmorSummary().getSummary(event.player);
+            if (summary != null && summary.flight[0]) {
                 event.player.capabilities.isFlying = true;
                 event.player.sendPlayerAbilities();
             }

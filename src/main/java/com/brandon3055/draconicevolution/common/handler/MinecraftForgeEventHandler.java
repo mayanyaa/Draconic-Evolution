@@ -147,10 +147,10 @@ public class MinecraftForgeEventHandler {
     public void onLivingJumpEvent(LivingEvent.LivingJumpEvent event) {
         if (!(event.entityLiving instanceof EntityPlayer)) return;
         EntityPlayer player = (EntityPlayer) event.entityLiving;
-        CustomArmorHandler.ArmorSummery summery = new CustomArmorHandler.ArmorSummery().getSummery(player);
+        CustomArmorHandler.ArmorSummary summary = new CustomArmorHandler.ArmorSummary().getSummary(player);
 
-        if (summery != null && summery.jumpModifier > 0) {
-            player.motionY += (double) (summery.jumpModifier * 0.1F);
+        if (summary != null && summary.jumpModifier > 0) {
+            player.motionY += (double) (summary.jumpModifier * 0.1F);
         }
     }
 
@@ -356,15 +356,15 @@ public class MinecraftForgeEventHandler {
     public void getBreakSpeed(PlayerEvent.BreakSpeed event) {
         if (event.entityPlayer != null) {
             float newDigSpeed = event.originalSpeed;
-            CustomArmorHandler.ArmorSummery summery = new CustomArmorHandler.ArmorSummery().getSummery(event.entityPlayer);
-            if (summery == null) return;
+            CustomArmorHandler.ArmorSummary summary = new CustomArmorHandler.ArmorSummary().getSummary(event.entityPlayer);
+            if (summary == null) return;
 
             if (event.entityPlayer.isInsideOfMaterial(Material.water)) {
-                if (summery.flight[0]) newDigSpeed *= 5f;
+                if (summary.flight[0]) newDigSpeed *= 5f;
             }
 
             if (!event.entityPlayer.onGround) {
-                if (summery.flight[0]) newDigSpeed *= 5f;
+                if (summary.flight[0]) newDigSpeed *= 5f;
             }
 
             if (event.newSpeed > 1) {

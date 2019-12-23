@@ -1,6 +1,6 @@
 package com.brandon3055.draconicevolution.integration;
 
-import com.brandon3055.draconicevolution.common.items.armor.CustomArmorHandler.ArmorSummery;
+import com.brandon3055.draconicevolution.common.items.armor.CustomArmorHandler.ArmorSummary;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,8 +46,8 @@ public class ModHelper {
         return bedrockSword != null && player.getHeldItem() != null && player.getHeldItem().getItem().equals(bedrockSword);
     }
 
-    public static float applyModDamageAdjustments(ArmorSummery summery, LivingAttackEvent event) {
-        if (summery == null) return event.ammount;
+    public static float applyModDamageAdjustments(ArmorSummary summary, LivingAttackEvent event) {
+        if (summary == null) return event.ammount;
         EntityPlayer attacker = event.source.getEntity() instanceof EntityPlayer ? (EntityPlayer) event.source.getEntity() : null;
 
         if (attacker == null) {
@@ -58,18 +58,18 @@ public class ModHelper {
             event.entityLiving.hurtResistantTime = 0;
             return 300F;
         } else if (isHoldingBedrockSword(attacker)) {
-            summery.entropy += 10;
+            summary.entropy += 10;
 
-            if (summery.entropy > 100) {
-                summery.entropy = 100;
+            if (summary.entropy > 100) {
+                summary.entropy = 100;
             }
 
-            return Math.max(event.ammount, Math.min(50F, summery.protectionPoints));
+            return Math.max(event.ammount, Math.min(50F, summary.protectionPoints));
         } else if (event.source.isUnblockable() || event.source.canHarmInCreative()) {
-            summery.entropy += 3;
+            summary.entropy += 3;
 
-            if (summery.entropy > 100) {
-                summery.entropy = 100;
+            if (summary.entropy > 100) {
+                summary.entropy = 100;
             }
 
             return event.ammount * 2;
