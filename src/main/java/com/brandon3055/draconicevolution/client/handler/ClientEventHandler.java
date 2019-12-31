@@ -170,11 +170,9 @@ public class ClientEventHandler {
             ModelBiped modelbiped = itemarmor.getArmorModel(event.entityPlayer, event.stack, event.slot);
             
             boolean invis = IConfigurableItem.ProfileHelper.getBoolean(event.stack, "ArmorInvisible", false);
-            if (!invis){
-                ChatComponentText debug = new ChatComponentText(invis + "  " + itemarmor.getUnlocalizedName());
-                event.entityPlayer.addChatMessage(debug);
-                event.renderer.setRenderPassModel(modelbiped);
-            }
+            ChatComponentText debug = new ChatComponentText(invis + "  " + itemarmor.getUnlocalizedName());
+            event.entityPlayer.addChatMessage(debug);
+            event.renderer.setRenderPassModel(modelbiped);
             
             // ChatComponentText debug = new ChatComponentText(itemarmor.getUnlocalizedName());
             // event.entityPlayer.addChatMessage(debug);
