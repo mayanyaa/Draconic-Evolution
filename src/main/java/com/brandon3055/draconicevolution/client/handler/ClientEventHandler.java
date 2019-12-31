@@ -171,7 +171,7 @@ public class ClientEventHandler {
             
             boolean invis = IConfigurableItem.ProfileHelper.getBoolean(event.stack, "ArmorInvisible", false);
             ChatComponentText debug = new ChatComponentText(invis + "  " + itemarmor.getUnlocalizedName());
-            event.entityPlayer.addChatMessage(debug);
+            // event.entityPlayer.addChatMessage(debug);
             event.renderer.setRenderPassModel(modelbiped);
             
             // ChatComponentText debug = new ChatComponentText(itemarmor.getUnlocalizedName());

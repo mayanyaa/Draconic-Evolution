@@ -18,7 +18,7 @@ public class ModelDraconicArmor extends ModelBiped {
     public ModelRenderOBJ rightBoot;
     public ModelRenderOBJ leftBoot;
 
-    public ModelDraconicArmor(float f, boolean isHelmet, boolean isChestPiece, boolean isLeggings, boolean isdBoots) {
+    public ModelDraconicArmor(float f, boolean isHelmet, boolean isChestPiece, boolean isLeggings, boolean isdBoots, boolean isVisible) {
         super(f, 0.0f, 128, 128);
 
         this.bipedHead = new ModelRenderer(this, 0, 0);
@@ -55,6 +55,16 @@ public class ModelDraconicArmor extends ModelBiped {
         this.leftLeg = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicLeftLeg.obj"), ResourceHandler.getResource("textures/models/armor/DraconicLeftLeg.png"));
         this.rightBoot = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicRightBoot.obj"), ResourceHandler.getResource("textures/models/armor/DraconicRightBoot.png"));
         this.leftBoot = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicLeftBoot.obj"), ResourceHandler.getResource("textures/models/armor/DraconicLeftBoot.png"));
+
+        // this.head = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicHelmet.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.body = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicBody.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.rightArm = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicRightArm.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.leftArm = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicLeftArm.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.belt = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicBelt.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.rightLeg = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicRightLeg.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.leftLeg = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicLeftLeg.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.rightBoot = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicRightBoot.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
+        // this.leftBoot = new ModelRenderOBJ(this, ResourceHandler.getResource("models/armor/DraconicLeftBoot.obj"), ResourceHandler.getResource("textures/models/armor/transparent.png"));
 
         this.bipedHead.cubeList.clear();
         this.bipedHeadwear.cubeList.clear();
@@ -96,20 +106,20 @@ public class ModelDraconicArmor extends ModelBiped {
         leftBoot.scale = 1F / 15F;
         rightBoot.scale = 1F / 15F;
 
-        if (isHelmet) {
+        if (isHelmet && isVisible) {
             this.bipedHead.addChild(head);
         }
-        if (isChestPiece) {
+        if (isChestPiece && isVisible) {
             this.bipedBody.addChild(body);
             this.bipedLeftArm.addChild(leftArm);
             this.bipedRightArm.addChild(rightArm);
         }
-        if (isLeggings) {
+        if (isLeggings && isVisible) {
             this.bipedLeftLeg.addChild(leftLeg);
             this.bipedRightLeg.addChild(rightLeg);
             this.bipedBody.addChild(belt);
         }
-        if (isdBoots) {
+        if (isdBoots && isVisible) {
             this.bipedLeftLeg.addChild(leftBoot);
             this.bipedRightLeg.addChild(rightBoot);
         }

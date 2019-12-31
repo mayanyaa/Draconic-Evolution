@@ -43,6 +43,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.command.ICommandSender;
 import net.minecraftforge.common.ISpecialArmor;
 import thaumcraft.api.IGoggles;
 import thaumcraft.api.nodes.IRevealer;
@@ -60,6 +62,8 @@ public class DraconicArmor extends ItemArmor implements ISpecialArmor, IConfigur
     private IIcon leggsIcon;
     @SideOnly(Side.CLIENT)
     private IIcon bootsIcon;
+    @SideOnly(Side.CLIENT)
+    private boolean wasVisible;
 
     private int maxEnergy = BalanceConfigHandler.draconicArmorBaseStorage;
     private int maxTransfer = BalanceConfigHandler.draconicArmorMaxTransfer;
@@ -350,12 +354,21 @@ public class DraconicArmor extends ItemArmor implements ISpecialArmor, IConfigur
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
         if (ConfigHandler.useOldArmorModel) return super.getArmorModel(entityLiving, itemStack, armorSlot);
 
+        boolean isVisible = true;
+
+        if ((entityLiving instanceof EntityPlayer)) {
+            isVisible = !IConfigurableItem.ProfileHelper.getBoolean(itemStack, "ArmorInvisible", false);
+            ChatComponentText debug = new ChatComponentText(isVisible + "  " + itemStack.getUnlocalizedName());
+            ((EntityPlayer) entityLiving).addChatMessage(debug);
+        }
+
         if (!ConfigHandler.useOriginal3DArmorModel) {
-            if (model == null) {
-                if (armorType == 0) model = new ModelDraconicArmor(1.1F, true, false, false, false);
-                else if (armorType == 1) model = new ModelDraconicArmor(1.1F, false, true, false, false);
-                else if (armorType == 2) model = new ModelDraconicArmor(1.1F, false, false, true, false);
-                else model = new ModelDraconicArmor(1.1F, false, false, false, true);
+            if (model == null || wasVisible != isVisible) {
+                wasVisible = isVisible;
+                if (armorType == 0) model = new ModelDraconicArmor(1.1F, true, false, false, false, isVisible);
+                else if (armorType == 1) model = new ModelDraconicArmor(1.1F, false, true, false, false, isVisible);
+                else if (armorType == 2) model = new ModelDraconicArmor(1.1F, false, false, true, false, isVisible);
+                else model = new ModelDraconicArmor(1.1F, false, false, false, true, isVisible);
                 this.model.bipedHead.showModel = (armorType == 0);
                 this.model.bipedHeadwear.showModel = (armorType == 0);
                 this.model.bipedBody.showModel = ((armorType == 1) || (armorType == 2));
