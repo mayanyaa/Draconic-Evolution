@@ -168,14 +168,8 @@ public class ClientEventHandler {
         if (event.stack != null && (event.stack.getItem() instanceof DraconicArmor || event.stack.getItem() instanceof WyvernArmor)) {
             ItemArmor itemarmor = (ItemArmor) event.stack.getItem();
             ModelBiped modelbiped = itemarmor.getArmorModel(event.entityPlayer, event.stack, event.slot);
-            
-            boolean invis = IConfigurableItem.ProfileHelper.getBoolean(event.stack, "ArmorInvisible", false);
-            ChatComponentText debug = new ChatComponentText(invis + "  " + itemarmor.getUnlocalizedName());
-            // event.entityPlayer.addChatMessage(debug);
             event.renderer.setRenderPassModel(modelbiped);
             
-            // ChatComponentText debug = new ChatComponentText(itemarmor.getUnlocalizedName());
-            // event.entityPlayer.addChatMessage(debug);
             modelbiped.onGround = event.renderer.modelBipedMain.onGround;
             modelbiped.isRiding = event.renderer.modelBipedMain.isRiding;
             modelbiped.isChild = event.renderer.modelBipedMain.isChild;

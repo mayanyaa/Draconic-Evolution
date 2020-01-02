@@ -356,11 +356,11 @@ public class DraconicArmor extends ItemArmor implements ISpecialArmor, IConfigur
 
         boolean isVisible = true;
 
-        if ((entityLiving instanceof EntityPlayer)) {
-            isVisible = !IConfigurableItem.ProfileHelper.getBoolean(itemStack, "ArmorInvisible", false);
-            ChatComponentText debug = new ChatComponentText(isVisible + "  " + itemStack.getUnlocalizedName());
-            ((EntityPlayer) entityLiving).addChatMessage(debug);
-        }
+        // if ((entityLiving instanceof EntityPlayer)) {
+        //     isVisible = !IConfigurableItem.ProfileHelper.getBoolean(itemStack, "ArmorInvisible", false);
+        //     ChatComponentText debug = new ChatComponentText(isVisible + "  " + itemStack.getUnlocalizedName());
+        //     ((EntityPlayer) entityLiving).addChatMessage(debug);
+        // }
 
         if (!ConfigHandler.useOriginal3DArmorModel) {
             if (model == null || wasVisible != isVisible) {
